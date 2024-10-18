@@ -19,3 +19,9 @@ echo "Installing nvim..."
 
 rm -f ~/.config/nvim
 ln -s $(pwd)/nvim ~/.config/nvim
+
+echo "Installing zellij..."
+
+rm -f ~/.config/zellij
+ln -s $(pwd)/zellij ~/.config/zellij
+
