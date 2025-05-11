@@ -18,6 +18,10 @@ return {
     require('neo-tree').setup {
       filesystem = {
         hijack_netrw_behavior = 'disabled', -- open_current
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+        },
         window = {
           mappings = {
             ['\\'] = 'close_window',
