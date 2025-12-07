@@ -78,9 +78,9 @@ return {
         lua_ls = {
           settings = {
             Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
+              -- completion = {
+              --   callSnippet = 'Replace',
+              -- },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               -- diagnostics = { disable = { 'missing-fields' } },
             },
@@ -140,6 +140,7 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         javascript = { 'prettier' },
+        typescript = { 'prettier' },
       },
     },
   },
@@ -149,25 +150,25 @@ return {
     event = 'VimEnter',
     version = '1.*',
     dependencies = {
-      {
-        'L3MON4D3/LuaSnip',
-        version = '2.*',
-        build = (function()
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-            return
-          end
-          return 'make install_jsregexp'
-        end)(),
-        dependencies = {
-          {
-            'rafamadriz/friendly-snippets',
-            config = function()
-              require('luasnip.loaders.from_vscode').lazy_load()
-            end,
-          },
-        },
-        opts = {},
-      },
+      -- {
+      --   'L3MON4D3/LuaSnip',
+      --   version = '2.*',
+      --   build = (function()
+      --     if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+      --       return
+      --     end
+      --     return 'make install_jsregexp'
+      --   end)(),
+      --   dependencies = {
+      --     {
+      --       'rafamadriz/friendly-snippets',
+      --       config = function()
+      --         require('luasnip.loaders.from_vscode').lazy_load()
+      --       end,
+      --     },
+      --   },
+      --   opts = {},
+      -- },
       'folke/lazydev.nvim',
     },
     opts = {
@@ -184,13 +185,18 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = {
+          'lsp',
+          'path',
+          -- 'snippets',
+          'lazydev',
+        },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         },
       },
 
-      snippets = { preset = 'luasnip' },
+      -- snippets = { preset = 'luasnip' },
 
       fuzzy = { implementation = 'lua' },
 

@@ -9,6 +9,7 @@ return {
     event = 'VeryLazy',
     opts = {
       spec = {
+        { 'gs', group = 'Surround' },
         { '<leader>c', group = 'Code' },
         { '<leader>f', group = 'Find' },
         { '<leader>g', group = 'Git' },
@@ -24,5 +25,16 @@ return {
     opts = {
       signs = false,
     },
+  },
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('flash').setup {}
+
+      vim.keymap.set('n', 's', function()
+        require('flash').jump()
+      end, { desc = 'Flash jump' })
+    end,
   },
 }

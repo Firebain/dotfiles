@@ -1,6 +1,3 @@
--- TODO: Maybe add this https://github.com/folke/snacks.nvim/blob/main/docs/rename.md#oilnvim
--- TODO: And try this https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md
-
 return {
   'stevearc/oil.nvim',
   lazy = false,

@@ -14,3 +14,4 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename' })
 vim.keymap.set({ 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Action' })
+vim.keymap.set({ 'n', 'x' }, '<leader>cd', vim.diagnostic.open_float, { desc = 'Line Diagnostics' })

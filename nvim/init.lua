@@ -17,9 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 require 'options'
 require 'keymaps'
 
--- TODO: gcc in tsx are wrong
--- TODO: linter maybe https://github.com/mfussenegger/nvim-lint
-
 require('lazy').setup {
   spec = {
     { import = 'plugins' },
