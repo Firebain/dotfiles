@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo "Installing brewfile..."
+
+rm -f ~/.Brewfile
+ln -s $(pwd)/.Brewfile ~/.Brewfile
+
 echo "Installing alacritty..."
 
 rm -f ~/.config/alacritty
@@ -19,3 +24,10 @@ echo "Installing tmux..."
 
 rm -f ~/.tmux.conf
 ln -s $(pwd)/.tmux.conf ~/.tmux.conf
+
+echo "Installing zshrc..."
+
+rm -f ~/.zshrc
+ln -s $(pwd)/.zshrc ~/.zshrc
+
+# Install k9s skins
