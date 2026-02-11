@@ -13,6 +13,7 @@ return {
         matcher = {
           history_bonus = true,
         },
+        hidden = true,
       }
     end, { desc = 'Find Files' })
 

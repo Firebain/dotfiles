@@ -46,7 +46,7 @@ return {
 
       harpoon:setup()
 
-      vim.keymap.set('n', '<leader>a', function()
+      vim.keymap.set('n', '<leader>m', function()
         harpoon:list():add()
       end, { desc = 'Create Harpoon Mark' })
 
@@ -59,7 +59,7 @@ return {
       --   }
       -- end, { desc = 'List of Harpoon Marks' })
 
-      vim.keymap.set('n', '<leader>m', function()
+      vim.keymap.set('n', '<leader>l', function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end, { desc = 'List of Harpoon Marks' })
 
