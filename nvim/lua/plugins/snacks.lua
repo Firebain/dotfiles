@@ -18,7 +18,11 @@ return {
     end, { desc = 'Find Files' })
 
     vim.keymap.set('n', '<leader><space>', function()
-      Snacks.picker.recent()
+      Snacks.picker.recent {
+        filter = {
+          cwd = true,
+        },
+      }
     end, { desc = 'Find Recent Files' })
 
     vim.keymap.set('n', '<leader>fg', function()
