@@ -42,14 +42,18 @@ return {
     },
     dependencies = {
       'nvim-lua/plenary.nvim',
-      {
-        'sindrets/diffview.nvim',
-        dependencies = {
-          'nvim-tree/nvim-web-devicons',
-        },
-      },
-
+      'sindrets/diffview.nvim',
       'folke/snacks.nvim',
+    },
+  },
+
+  {
+    'sindrets/diffview.nvim',
+    keys = {
+      { '<leader>gh', '<CMD>DiffviewFileHistory %<CR>', desc = 'File history' },
+    },
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
     },
   },
 }

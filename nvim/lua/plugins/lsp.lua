@@ -1,3 +1,40 @@
+local function setup_diagnostic()
+  local function format_virtual_text(diagnostic)
+    local msg = diagnostic.message:gsub('[\r\n]+', ' ')
+    msg = vim.trim(msg)
+
+    local max_len = math.max(30, math.floor(vim.api.nvim_win_get_width(0) * 0.50))
+    if vim.fn.strdisplaywidth(msg) > max_len then
+      msg = vim.fn.strcharpart(msg, 0, max_len - 3) .. '...'
+    end
+
+    return msg
+  end
+
+  vim.diagnostic.config {
+    severity_sort = true,
+    float = {
+      border = 'rounded',
+      source = 'if_many',
+      max_width = math.max(40, math.floor(vim.o.columns * 0.6)),
+    },
+    underline = { severity = vim.diagnostic.severity.ERROR },
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = '󰅚 ',
+        [vim.diagnostic.severity.WARN] = '󰀪 ',
+        [vim.diagnostic.severity.INFO] = '󰋽 ',
+        [vim.diagnostic.severity.HINT] = '󰌶 ',
+      },
+    },
+    virtual_text = {
+      source = 'if_many',
+      spacing = 2,
+      format = format_virtual_text,
+    },
+  }
+end
+
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -10,86 +47,52 @@ return {
     'saghen/blink.cmp',
   },
   config = function()
-    local function format_virtual_text(diagnostic)
-      local msg = diagnostic.message:gsub('[\r\n]+', ' ')
-      msg = vim.trim(msg)
+    require('mason-tool-installer').setup {
+      ensure_installed = {
+        'lua_ls',
+        'stylua',
 
-      local max_len = math.max(30, math.floor(vim.api.nvim_win_get_width(0) * 0.50))
-      if vim.fn.strdisplaywidth(msg) > max_len then
-        msg = vim.fn.strcharpart(msg, 0, max_len - 3) .. '...'
-      end
+        'ts_ls',
+        'prettier',
 
-      return msg
-    end
-
-    vim.diagnostic.config {
-      severity_sort = true,
-      float = {
-        border = 'rounded',
-        source = 'if_many',
-        max_width = math.max(40, math.floor(vim.o.columns * 0.6)),
-      },
-      underline = { severity = vim.diagnostic.severity.ERROR },
-      signs = {
-        text = {
-          [vim.diagnostic.severity.ERROR] = '󰅚 ',
-          [vim.diagnostic.severity.WARN] = '󰀪 ',
-          [vim.diagnostic.severity.INFO] = '󰋽 ',
-          [vim.diagnostic.severity.HINT] = '󰌶 ',
-        },
-      },
-      virtual_text = {
-        source = 'if_many',
-        spacing = 2,
-        format = format_virtual_text,
+        'gopls',
       },
     }
+
+    setup_diagnostic()
 
     local capabilities = require('blink.cmp').get_lsp_capabilities()
-    local servers = {
-      gopls = {},
-      ts_ls = {},
-      zls = {},
-      astro = {},
-      ['rust-analyzer'] = {},
-      lua_ls = {},
-    }
 
-    local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format Lua code
-      'prettier',
-      'eslint',
+    -- Typescript
+    vim.lsp.config('ts_ls', {
+      capabilities = capabilities,
     })
 
-    require('mason-tool-installer').setup {
-      ensure_installed = ensure_installed,
-    }
+    vim.lsp.enable 'ts_ls'
 
-    vim.lsp.config('eslint', {
-      handlers = {
-        ['textDocument/diagnostic'] = function(err, result, ctx)
-          if result and result.items then
-            for _, diagnostic in ipairs(result.items) do
-              diagnostic.severity = vim.diagnostic.severity.HINT
-            end
-          end
-          return vim.lsp.diagnostic.on_diagnostic(err, result, ctx)
-        end,
+    -- Lua
+    vim.lsp.config('lua_ls', {
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME,
+              { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+            },
+          },
+        },
       },
     })
 
-    require('mason-lspconfig').setup {
-      ensure_installed = {},
-      automatic_installation = false,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
+    vim.lsp.enable 'lua_ls'
 
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-    }
+    -- Golang
+    vim.lsp.config('gopls', {
+      capabilities = capabilities,
+    })
+
+    vim.lsp.enable 'gopls'
   end,
 }

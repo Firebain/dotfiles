@@ -4,6 +4,19 @@ vim.g.maplocalleader = '\\'
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+local function toggle_terminal()
+  for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
+    local buffer_name = vim.api.nvim_buf_get_name(buffer)
+    if string.sub(buffer_name, 1, 7) == 'term://' then
+      vim.api.nvim_win_set_buf(0, buffer)
+      return
+    end
+  end
+  vim.api.nvim_command ':terminal'
+end
+vim.keymap.set('n', '<leader>t', toggle_terminal, { desc = 'Toggle Terminal' })
+vim.keymap.set('n', '<leader>T', '<cmd>terminal<CR>', { desc = 'New Terminal' })
+
 vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Copy to clipboard' })
 vim.keymap.set('n', '<leader>p', '"+p', { desc = 'Paste from clipboard' })
 

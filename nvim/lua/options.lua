@@ -6,3 +6,5 @@ vim.o.cursorline = true
 vim.o.scrolloff = 10
 
 vim.g.snacks_animate = false
+
+vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { noremap = true })

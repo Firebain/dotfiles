@@ -18,14 +18,10 @@ return {
     end, { desc = 'Find Files' })
 
     vim.keymap.set('n', '<leader><space>', function()
-      Snacks.picker.recent()
-    end, { desc = 'Find Recent Files' })
-
-    vim.keymap.set('n', '<leader>fb', function()
       Snacks.picker.buffers {
-        modified = true,
+        current = false,
       }
-    end, { desc = 'Find Modified Buffers' })
+    end, { desc = 'Find Buffers' })
 
     vim.keymap.set('n', '<leader>fg', function()
       Snacks.picker.grep()
