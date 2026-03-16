@@ -9,10 +9,12 @@ local function toggle_terminal()
     local buffer_name = vim.api.nvim_buf_get_name(buffer)
     if string.sub(buffer_name, 1, 7) == 'term://' then
       vim.api.nvim_win_set_buf(0, buffer)
+      vim.cmd 'startinsert'
       return
     end
   end
   vim.api.nvim_command ':terminal'
+  vim.cmd 'startinsert'
 end
 vim.keymap.set('n', '<leader>t', toggle_terminal, { desc = 'Toggle Terminal' })
 vim.keymap.set('n', '<leader>T', '<cmd>terminal<CR>', { desc = 'New Terminal' })

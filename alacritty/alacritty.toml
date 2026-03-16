@@ -11,3 +11,10 @@ normal = { family = 'JetBrainsMono NF', style = 'Regular' }
 bold = { family = 'JetBrainsMono NF', style = 'Bold' }
 italic = { family = 'JetBrainsMono NF', style = 'Italic' }
 bold_italic = { family = 'JetBrainsMono NF', style = 'Bold Italic' }
+
+[[hints.enabled]]
+regex = "https?://[^\\s<>\"]+"
+command = "open"
+post_processing = true
+hyperlinks = false
+mouse = { enabled = true }

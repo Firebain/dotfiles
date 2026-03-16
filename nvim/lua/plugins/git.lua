@@ -42,18 +42,17 @@ return {
     },
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'sindrets/diffview.nvim',
+      'esmuellert/codediff.nvim',
       'folke/snacks.nvim',
     },
   },
 
   {
-    'sindrets/diffview.nvim',
+    'esmuellert/codediff.nvim',
+    cmd = { 'CodeDiff' },
     keys = {
-      { '<leader>gh', '<CMD>DiffviewFileHistory %<CR>', desc = 'File history' },
+      { '<leader>gh', '<CMD>CodeDiff history %<CR>', desc = 'File history' },
     },
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
+    dependencies = { 'MunifTanjim/nui.nvim' },
   },
 }
