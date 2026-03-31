@@ -8,6 +8,21 @@ return {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {
+      preset = 'helix',
+      filter = function(mapping)
+        local ignore = {
+          'z=',
+          'zw',
+        }
+
+        for _, value in ipairs(ignore) do
+          if mapping.lhs == value then
+            return false
+          end
+        end
+
+        return true
+      end,
       spec = {
         { 'gs', group = 'Surround' },
         { '<leader>c', group = 'Code' },
