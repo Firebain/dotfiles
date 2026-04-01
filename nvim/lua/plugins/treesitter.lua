@@ -1,41 +1,37 @@
-return {
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs',
-    opts = {
-      ensure_installed = {
-        'lua',
-        'luadoc',
-        'javascript',
-        'rust',
-        'typescript',
-        'python',
-        'json',
-        'tsx',
-        'go',
-        'gomod',
-        'gosum',
-        'prisma',
-        'astro',
-        'zig',
-      },
-      auto_install = false,
-      highlight = {
-        enable = true,
-      },
-      indent = { enable = true },
-    },
-  },
-  {
-    'RRethy/nvim-treesitter-textsubjects',
-    config = function()
-      require('nvim-treesitter-textsubjects').configure {
-        prev_selection = ',',
-        keymaps = {
-          ['.'] = 'textsubjects-smart',
-        },
-      }
-    end,
-  },
+local parsers = {
+  'lua',
+  'luadoc',
+
+  'javascript',
+  'typescript',
+  'tsx',
+
+  'go',
+  'gomod',
+  'gosum',
+
+  'rust',
+
+  'python',
+
+  'json',
+  'prisma',
 }
+
+require('nvim-treesitter').install(parsers)
+
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(args)
+    local buf, filetype = args.buf, args.match
+
+    local language = vim.treesitter.language.get_lang(filetype)
+    if not language then return end
+
+    -- check if parser exists and load it
+    if not vim.treesitter.language.add(language) then return end
+    -- enables syntax highlighting and other treesitter features
+    vim.treesitter.start(buf, language)
+
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})

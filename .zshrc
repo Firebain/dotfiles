@@ -11,6 +11,7 @@ export K9S_CONFIG_DIR="$HOME/.config/k9s"
 export PATH="$HOME/.local/n/bin:$PATH"
 export PATH="$HOME/.duckdb/cli/latest:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 alias vim='nvim'
 export PATH="$HOME/.local/bin:$PATH"
