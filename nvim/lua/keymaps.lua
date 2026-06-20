@@ -17,7 +17,7 @@ end
 vim.keymap.set('n', '<leader>t', toggle_terminal, { desc = 'Toggle Terminal' })
 vim.keymap.set('n', '<leader>T', '<cmd>terminal<CR>', { desc = 'New Terminal' })
 
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Copy to clipboard' })
 vim.keymap.set('n', '<leader>p', '"+p', { desc = 'Paste from clipboard' })

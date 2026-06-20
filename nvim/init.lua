@@ -7,13 +7,13 @@ vim.pack.add {
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
   { src = 'https://github.com/MunifTanjim/nui.nvim' },
 
-  { src = 'https://github.com/j-hui/fidget.nvim' },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/mason-org/mason.nvim' },
   { src = 'https://github.com/mason-org/mason-lspconfig.nvim' },
   { src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
   { src = 'https://github.com/stevearc/conform.nvim' },
+  { src = 'https://github.com/mfussenegger/nvim-lint' },
   { src = 'https://github.com/saghen/blink.cmp' },
   { src = 'https://github.com/L3MON4D3/LuaSnip' },
 
@@ -26,6 +26,8 @@ vim.pack.add {
   { src = 'https://github.com/stevearc/oil.nvim' },
   { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' },
   { src = 'https://github.com/jake-stewart/multicursor.nvim' },
+  { src = 'https://github.com/ej-shafran/compile-mode.nvim' },
+  { src = 'https://github.com/m00qek/baleia.nvim' },
 
   { src = 'https://github.com/NMAC427/guess-indent.nvim' },
   { src = 'https://github.com/folke/which-key.nvim' },
@@ -35,6 +37,8 @@ vim.pack.add {
 
 vim.cmd.colorscheme 'vscode'
 
+require 'commands'
+
 require 'plugins.oil'
 require 'plugins.mini'
 require 'plugins.snippets'
@@ -42,6 +46,8 @@ require 'plugins.blink'
 require 'plugins.snacks'
 require 'plugins.treesitter'
 require 'plugins.lsp'
+require 'plugins.lint'
+require 'plugins.compilemode'
 require 'plugins.git'
 require 'plugins.conform'
 require 'plugins.harpoon'

@@ -1,6 +1,7 @@
 require('snacks').setup {
   picker = { enabled = true },
   indent = {},
+  gitbrowse = {},
 }
 
 vim.keymap.set(
@@ -44,3 +45,5 @@ vim.keymap.set('n', '<leader>fs', function() Snacks.picker.git_status() end, { d
 vim.keymap.set('n', '<leader>xx', function() Snacks.picker.diagnostics() end, { desc = 'Diagnostics' })
 
 vim.keymap.set('n', '<leader>xX', function() Snacks.picker.diagnostics_buffer() end, { desc = 'Buffer Diagnostics' })
+
+vim.keymap.set('n', '<leader>go', function() Snacks.gitbrowse() end, { desc = 'Open Repo' })

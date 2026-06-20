@@ -11,11 +11,15 @@ local parsers = {
   'gosum',
 
   'rust',
+  'toml',
 
   'python',
 
   'json',
   'prisma',
+
+  'astro',
+  'hcl',
 }
 
 require('nvim-treesitter').install(parsers)

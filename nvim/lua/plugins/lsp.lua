@@ -9,7 +9,6 @@ local function format_virtual_text(diagnostic)
 end
 
 require('mason').setup {}
-require('fidget').setup {}
 
 require('mason-tool-installer').setup {
   ensure_installed = {
@@ -19,7 +18,11 @@ require('mason-tool-installer').setup {
     'ts_ls',
     'prettier',
 
+    'rust_analyzer',
+
     'gopls',
+
+    'astro-language-server',
   },
 }
 
@@ -87,9 +90,23 @@ vim.lsp.config('lua_ls', {
 
 vim.lsp.enable 'lua_ls'
 
+-- Rust
+vim.lsp.config('rust_analyzer', {
+  capabilities = capabilities,
+})
+
+vim.lsp.enable 'rust_analyzer'
+
 -- Golang
 vim.lsp.config('gopls', {
   capabilities = capabilities,
 })
 
 vim.lsp.enable 'gopls'
+
+-- Astro
+vim.lsp.config('astro', {
+  capabilities = capabilities,
+})
+
+vim.lsp.enable 'astro'

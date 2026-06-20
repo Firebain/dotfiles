@@ -4,6 +4,7 @@ require('which-key').setup {
   preset = 'helix',
   spec = {
     { 'gs', group = 'Surround' },
+    { '<leader>u', group = 'Toggle' },
     { '<leader>c', group = 'Code' },
     { '<leader>f', group = 'Find' },
     { '<leader>g', group = 'Git' },
