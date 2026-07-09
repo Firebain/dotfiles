@@ -22,6 +22,8 @@ require('mason-tool-installer').setup {
 
     'gopls',
 
+    'clangd',
+
     'astro-language-server',
   },
 }
@@ -103,6 +105,13 @@ vim.lsp.config('gopls', {
 })
 
 vim.lsp.enable 'gopls'
+
+-- C
+vim.lsp.config('clangd', {
+  capabilities = capabilities,
+})
+
+vim.lsp.enable 'clangd'
 
 -- Astro
 vim.lsp.config('astro', {

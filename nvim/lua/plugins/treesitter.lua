@@ -10,6 +10,8 @@ local parsers = {
   'gomod',
   'gosum',
 
+  'c',
+
   'rust',
   'toml',
 
