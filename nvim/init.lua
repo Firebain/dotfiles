@@ -1,6 +1,21 @@
 require 'options'
 require 'keymaps'
 
+vim.api.nvim_create_autocmd('PackChanged', {
+  desc = 'Run post-install/update build hooks',
+  callback = function(ev)
+    local name = ev.data.spec.name
+    local kind = ev.data.kind
+    -- local path = ev.data.path
+
+    print 'Running build hooks'
+
+    if kind ~= 'install' and kind ~= 'update' then return end
+
+    if name == 'blink.cmp' then require('blink.cmp').build():pwait() end
+  end,
+})
+
 vim.pack.add {
   { src = 'https://github.com/mofiqul/vscode.nvim' },
 
@@ -14,6 +29,7 @@ vim.pack.add {
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
   { src = 'https://github.com/stevearc/conform.nvim' },
   { src = 'https://github.com/mfussenegger/nvim-lint' },
+  { src = 'https://github.com/saghen/blink.lib' },
   { src = 'https://github.com/saghen/blink.cmp' },
   { src = 'https://github.com/L3MON4D3/LuaSnip' },
 
