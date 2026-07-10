@@ -49,6 +49,7 @@ vim.pack.add {
   { src = 'https://github.com/folke/which-key.nvim' },
   { src = 'https://github.com/folke/todo-comments.nvim' },
   { src = 'https://github.com/folke/flash.nvim' },
+  { src = 'https://github.com/mistweaverco/kulala.nvim' },
 }
 
 vim.cmd.colorscheme 'vscode'
@@ -69,3 +70,4 @@ require 'plugins.conform'
 require 'plugins.harpoon'
 require 'plugins.multicursor'
 require 'plugins.utils'
+require 'plugins.kulala'
