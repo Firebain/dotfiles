@@ -2,6 +2,12 @@ vim.g.compile_mode = {
   input_word_completion = true,
   baleia_setup = true,
 
+  recompile_no_fail = true,
+
+  error_ignore_file_list = {
+    '^[0-9][0-9]:[0-9][0-9]:[0-9][0-9]',
+  },
+
   error_regexp_table = {
     typescript = {
       -- TypeScript errors take the form

@@ -40,7 +40,6 @@ vim.pack.add {
   { src = 'https://github.com/esmuellert/codediff.nvim' },
   { src = 'https://github.com/NeogitOrg/neogit' },
   { src = 'https://github.com/stevearc/oil.nvim' },
-  { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' },
   { src = 'https://github.com/jake-stewart/multicursor.nvim' },
   { src = 'https://github.com/ej-shafran/compile-mode.nvim' },
   { src = 'https://github.com/m00qek/baleia.nvim' },
@@ -67,7 +66,6 @@ require 'plugins.lint'
 require 'plugins.compilemode'
 require 'plugins.git'
 require 'plugins.conform'
-require 'plugins.harpoon'
 require 'plugins.multicursor'
 require 'plugins.utils'
 require 'plugins.kulala'

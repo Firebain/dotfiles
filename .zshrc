@@ -15,3 +15,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 alias vim='nvim'
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/opt/depot_tools:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"

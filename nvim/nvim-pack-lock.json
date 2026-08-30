@@ -77,10 +77,6 @@
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
-    "nvim-dbee": {
-      "rev": "dda517694889a5d238d7aa407403984da9f80cc0",
-      "src": "https://github.com/kndndrj/nvim-dbee"
-    },
     "nvim-lint": {
       "rev": "a219b2c9e5b4765e5c845aba119dad55806fcaf1",
       "src": "https://github.com/mfussenegger/nvim-lint"
