@@ -48,7 +48,7 @@ vim.pack.add {
   { src = 'https://github.com/folke/which-key.nvim' },
   { src = 'https://github.com/folke/todo-comments.nvim' },
   { src = 'https://github.com/folke/flash.nvim' },
-  { src = 'https://github.com/mistweaverco/kulala.nvim' },
+  { src = 'https://github.com/dont-be-evil-company/kulala.nvim' },
 }
 
 vim.cmd.colorscheme 'vscode'

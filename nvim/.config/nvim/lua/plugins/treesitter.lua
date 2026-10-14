@@ -22,6 +22,7 @@ local parsers = {
 
   'astro',
   'hcl',
+  'nix',
 }
 
 require('nvim-treesitter').install(parsers)

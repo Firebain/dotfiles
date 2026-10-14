@@ -2,11 +2,11 @@
 import = ["~/.config/alacritty/vscode-dark.toml"]
 
 [window]
-startup_mode = 'Fullscreen'
+# startup_mode = 'Fullscreen'
 option_as_alt = 'Both'
 
 [font]
-size = 14
+size = 12
 normal = { family = 'JetBrainsMono NF', style = 'Regular' }
 bold = { family = 'JetBrainsMono NF', style = 'Bold' }
 italic = { family = 'JetBrainsMono NF', style = 'Italic' }

@@ -25,6 +25,8 @@ require('mason-tool-installer').setup {
     'clangd',
 
     'astro-language-server',
+
+    'nil',
   },
 }
 
@@ -119,3 +121,10 @@ vim.lsp.config('astro', {
 })
 
 vim.lsp.enable 'astro'
+
+-- Nix
+vim.lsp.config('nil_ls', {
+  capabilities = capabilities,
+})
+
+vim.lsp.enable 'nil_ls'
