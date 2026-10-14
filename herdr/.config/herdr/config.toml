@@ -1,0 +1,57 @@
+onboarding = false
+
+[keys]
+prefix = "ctrl+s"
+last_pane = "prefix+l"
+next_agent = "prefix+a"
+goto = "prefix+s"
+detach = "prefix+d"
+split_vertical = "prefix+percent"
+split_horizontal = "prefix+double_quote"
+
+[[keys.command]]
+key = "prefix+h"
+type = "pane"
+command = "hunk diff"
+description = "run hunk"
+
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "dir=\"$(find \"$HOME/Desktop\" -name .git -type d -maxdepth 3 -prune | sed -e 's/\\/.git$//' | fzf --delimiter '/' --with-nth -2,-1 --prompt='Project> ')\" || exit 0; herdr tab create --cwd \"$dir\" --focus"
+description = "find project (tab)"
+
+[[keys.command]]
+key = "prefix+g"
+type = "popup"
+command = "dir=\"$(find \"$HOME/Desktop\" -name .git -type d -maxdepth 3 -prune | sed -e 's/\\/.git$//' | fzf --delimiter '/' --with-nth -2,-1 --prompt='Project> ')\" || exit 0; herdr workspace create --cwd \"$dir\" --focus"
+description = "find project (workspace)"
+
+[ui]
+prompt_new_tab_name = false
+agent_panel_sort = "priority"
+
+[ui.toast]
+delivery = "herdr"
+
+[theme]
+name = "vesper"
+auto_switch = false
+
+[theme.custom]
+panel_bg = "#1F1F1F"
+surface0 = "#2D2D2D"
+surface1 = "#373737"
+surface_dim = "#252526"
+overlay0 = "#808080"
+overlay1 = "#BBBBBB"
+text = "#D4D4D4"
+subtext0 = "#AEAFAD"
+mauve = "#C586C0"
+yellow = "#DCDCAA"
+red = "#F44747"
+blue = "#569CD6"
+teal = "#4EC9B0"
+peach = "#CE9178"
+accent = "#A7C080"
+green = "#A7C080"
