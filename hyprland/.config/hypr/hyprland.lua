@@ -32,8 +32,10 @@ hl.monitor {
 
 -- Set programs that you use
 local terminal = 'alacritty'
-local fileManager = 'nautilus'
-local menu = 'hyprlauncher'
+local terminalHere = 'alacritty --class AlacrittyHere'
+local browser = 'helium'
+local slack = 'slack'
+local fileManager = 'alacritty --class AlacrittyYazi -e yazi'
 
 -------------------
 ---- AUTOSTART ----
@@ -45,6 +47,30 @@ local menu = 'hyprlauncher'
 -- Or execute your favorite apps at launch like this:
 --
 hl.on('hyprland.start', function() hl.exec_cmd 'noctalia' end)
+
+local workspaceApps = {
+  [2] = { class = 'Alacritty', cmd = terminal },
+  [3] = { class = 'helium', cmd = browser },
+  [4] = { class = 'Slack', cmd = slack },
+}
+
+local function has_window_class(class)
+  for _, window in ipairs(hl.get_windows()) do
+    if window.mapped and window.class == class then return true end
+  end
+
+  return false
+end
+
+hl.on('workspace.active', function()
+  local workspace = hl.get_active_workspace()
+  if not workspace then return end
+
+  local app = workspaceApps[workspace.id]
+  if not app or has_window_class(app.class) then return end
+
+  hl.exec_cmd(app.cmd)
+end)
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -152,9 +178,9 @@ hl.animation { leaf = 'layersIn', enabled = true, speed = 4, bezier = 'easeOutQu
 hl.animation { leaf = 'layersOut', enabled = true, speed = 1.5, bezier = 'linear', style = 'fade' }
 hl.animation { leaf = 'fadeLayersIn', enabled = true, speed = 1.79, bezier = 'almostLinear' }
 hl.animation { leaf = 'fadeLayersOut', enabled = true, speed = 1.39, bezier = 'almostLinear' }
-hl.animation { leaf = 'workspaces', enabled = true, speed = 1.94, bezier = 'almostLinear', style = 'fade' }
-hl.animation { leaf = 'workspacesIn', enabled = true, speed = 1.21, bezier = 'almostLinear', style = 'fade' }
-hl.animation { leaf = 'workspacesOut', enabled = true, speed = 1.94, bezier = 'almostLinear', style = 'fade' }
+hl.animation { leaf = 'workspaces', enabled = false }
+hl.animation { leaf = 'workspacesIn', enabled = false }
+hl.animation { leaf = 'workspacesOut', enabled = false }
 hl.animation { leaf = 'zoomFactor', enabled = true, speed = 7, bezier = 'quick' }
 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
@@ -216,7 +242,7 @@ hl.config {
     kb_layout = 'us,ru',
     kb_variant = '',
     kb_model = '',
-    kb_options = 'ctrl:nocaps,grp:alt_shift_toggle',
+    kb_options = 'ctrl:nocaps,grp:ctrl_space_toggle',
     kb_rules = '',
 
     follow_mouse = 1,
@@ -254,7 +280,6 @@ hl.bind(mainMod .. ' + SPACE', hl.dsp.exec_cmd(ipc .. 'panel-toggle launcher'))
 
 -- hl.bind(mainMod .. ' + S', hl.dsp.exec_cmd(ipc .. 'panel-toggle control-center'))
 -- hl.bind(mainMod .. ' + COMMA', hl.dsp.exec_cmd(ipc .. 'settings-toggle'))
-hl.bind(mainMod .. ' + W', hl.dsp.exec_cmd 'helium')
 hl.bind(
   mainMod .. ' + F',
   hl.dsp.window.fullscreen {
@@ -297,7 +322,7 @@ end)
 -- hl.bind(mainMod .. ' + TAB', hl.dsp.exec_cmd(ipc .. 'window-switcher'))
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. ' + T', hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. ' + T', hl.dsp.exec_cmd(terminalHere))
 local closeWindowBind = hl.bind(mainMod .. ' + Q', hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 -- hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
@@ -358,6 +383,10 @@ hl.bind('XF86AudioMute', hl.dsp.exec_cmd(ipc .. 'volume-mute'), { locked = true,
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
 -- Example window rules that are useful
+
+hl.window_rule { name = 'helium-workspace', match = { class = '^helium$' }, workspace = '3' }
+hl.window_rule { name = 'terminal-workspace', match = { class = '^Alacritty$' }, workspace = '2' }
+hl.window_rule { name = 'slack-workspace', match = { class = '^Slack$' }, workspace = '4' }
 
 local suppressMaximizeRule = hl.window_rule {
   -- Ignore maximize requests from all apps. You'll probably like this.
