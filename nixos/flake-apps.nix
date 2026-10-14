@@ -32,7 +32,7 @@
   };
 
   environment.systemPackages = with inputs; [
-    (herdr.packages.${pkgs.system}.default)
+    (herdr.packages.${pkgs.stdenv.hostPlatform.system}.default)
   ];
 
   programs.helium.enable = true;

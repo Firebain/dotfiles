@@ -18,6 +18,7 @@
     file
     tree-sitter
     bitwarden-desktop
+    ripgrep
 
     nodejs
     go
